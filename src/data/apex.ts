@@ -376,20 +376,20 @@ export const SEED_WEEK: Record<number, SeedJob[]> = {
   ],
   // Friday
   5: [
-    { unit: 0, start: '10:30', vehicle: 'luxury', label: 'Range Rover Vogue', service: 'exterior-correction', zone: 'ikoyi', customer: 'Obinna J.' },
-    { unit: 0, start: '16:30', vehicle: 'sedan', label: 'Mercedes E350', service: 'signature-reset', zone: 'lekki-phase-1', customer: 'Yemi T.' },
-    { unit: 1, start: '10:30', vehicle: 'suv', label: 'Lexus GX 460', service: 'signature-reset', zone: 'chevron', customer: 'Amaka P.' },
-    { unit: 1, start: '14:00', vehicle: 'coupe', label: 'Mercedes-AMG C63', service: 'ceramic-shield', zone: 'osapa', customer: 'Kunle W.', pendingDeposit: true },
-    { unit: 2, start: '12:00', vehicle: 'pickup', label: 'Toyota Hilux', service: 'interior-recovery', zone: 'ajah', customer: 'Musa G.' },
+    { unit: 0, start: '08:00', vehicle: 'suv', label: 'Lexus GX 460', service: 'signature-reset', zone: 'lekki-phase-1', customer: 'Amaka P.' },
+    { unit: 0, start: '13:30', vehicle: 'luxury', label: 'Range Rover Vogue', service: 'exterior-correction', zone: 'ikoyi', customer: 'Obinna J.' },
+    { unit: 1, start: '10:30', vehicle: 'pickup', label: 'Toyota Hilux', service: 'signature-reset', zone: 'chevron', customer: 'Musa G.' },
+    { unit: 1, start: '16:30', vehicle: 'sedan', label: 'Mercedes E350', service: 'signature-reset', zone: 'lekki-phase-1', customer: 'Yemi T.' },
+    { unit: 2, start: '14:00', vehicle: 'coupe', label: 'Mercedes-AMG C63', service: 'ceramic-shield', zone: 'osapa', customer: 'Kunle W.', pendingDeposit: true },
   ],
   // Saturday
   6: [
     { unit: 0, start: '08:00', vehicle: 'suv', label: 'BMW X6', service: 'signature-reset', zone: 'lekki-phase-1', customer: 'Ronke H.' },
     { unit: 0, start: '11:30', vehicle: 'luxury', label: 'Lexus LX 570', service: 'exterior-correction', zone: 'ikoyi', customer: 'Victor N.' },
     { unit: 1, start: '08:30', vehicle: 'sedan', label: 'Toyota Camry', service: 'interior-recovery', addons: ['pet-hair'], zone: 'ikate', customer: 'Esther O.' },
-    { unit: 1, start: '12:00', vehicle: 'suv', label: 'Mercedes GLE', service: 'signature-reset', addons: ['engine-bay'], zone: 'victoria-island', customer: 'Gbenga A.' },
-    { unit: 2, start: '09:00', vehicle: 'luxury', label: 'Range Rover Sport', service: 'ceramic-shield', zone: 'chevron', customer: 'Lola K.' },
-    { unit: 2, start: '16:00', vehicle: 'sedan', label: 'Honda Civic', service: 'signature-reset', zone: 'osapa', customer: 'Daniel E.' },
+    { unit: 1, start: '13:00', vehicle: 'suv', label: 'Mercedes GLE', service: 'signature-reset', addons: ['engine-bay'], zone: 'victoria-island', customer: 'Gbenga A.' },
+    { unit: 1, start: '17:00', vehicle: 'sedan', label: 'Honda Civic', service: 'signature-reset', zone: 'osapa', customer: 'Daniel E.' },
+    { unit: 2, start: '13:00', vehicle: 'luxury', label: 'Range Rover Sport', service: 'ceramic-shield', zone: 'chevron', customer: 'Lola K.' },
   ],
 };
 
