@@ -4,8 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'node:path';
 
 export default defineConfig({
-  server: { host: '::', port: 8080 },
+  server: { port: 5173 },
   plugins: [react(), tailwindcss()],
   resolve: { alias: { '@': path.resolve(import.meta.dirname, './src') } },
-  test: { environment: 'node', include: ['src/**/*.test.ts'] },
 });

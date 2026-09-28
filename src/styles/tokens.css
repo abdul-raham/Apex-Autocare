@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+
+/*
+ * APEX design tokens. Graphite base, warm bone surfaces, hairline silver and one
+ * acid accent reserved for active / confirmed states.
+ */
+@theme {
+  --color-ink: #0a0b0b;
+  --color-graphite: #101211;
+  --color-panel: #141615;
+  --color-panel-2: #1a1c1b;
+  --color-line: rgb(236 232 222 / 0.09);
+  --color-line-strong: rgb(236 232 222 / 0.2);
+  --color-bone: #ece8de;
+  --color-paper: #e8e4d8;
+  --color-paper-2: #dcd7c9;
+  --color-paper-ink: #121311;
+  --color-muted: #8f928b;
+  --color-dim: #5e615c;
+  --color-silver: #b8bbb4;
+  --color-acid: #c9ff3d;
+  --color-acid-soft: rgb(201 255 61 / 0.14);
+  --color-tail: #ff4d3d;
+  --color-amber: #ffb547;
+
+  --font-display: 'Archivo', 'Arial Narrow', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --ease-apex: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-sweep: sweep 6s linear infinite;
+  --animate-blink: blink 1.6s steps(2, start) infinite;
+  --animate-pulse-ring: pulse-ring 2.4s var(--ease-out-expo) infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-sheen: sheen 3.6s var(--ease-apex) infinite;
+
+  @keyframes sweep {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+  @keyframes pulse-ring {
+    0% {
+      transform: translate(-50%, -50%) scale(0.6);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2.4);
+      opacity: 0;
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes sheen {
+    0%,
+    55% {
+      transform: translateX(-120%) skewX(-18deg);
+    }
+    100% {
+      transform: translateX(260%) skewX(-18deg);
+    }
+  }
+}
