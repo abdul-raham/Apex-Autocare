@@ -1,0 +1,12 @@
+node_modules
+dist
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+.vite
+# source briefs kept outside the repo
+Apex_AutoCare_*.docx
+Apex_AutoCare_*.zip
