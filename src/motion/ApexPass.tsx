@@ -28,6 +28,7 @@ interface RouteMeta {
 }
 
 export function routeMeta(pathname: string): RouteMeta {
+  if (pathname.startsWith('/services')) return { index: 1, code: '01', label: 'Services' };
   if (pathname.startsWith('/process')) return { index: 1, code: '02', label: 'Process' };
   if (pathname.startsWith('/book')) return { index: 2, code: '04', label: 'Book' };
   if (pathname.startsWith('/manage')) return { index: 3, code: '05', label: 'Manage' };

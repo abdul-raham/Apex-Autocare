@@ -9,6 +9,10 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 
 const Book = lazy(() => import('./pages/Book'));
+const ManageBooking = lazy(() => import('./pages/ManageBooking'));
+const Operations = lazy(() => import('./pages/Operations'));
+const Process = lazy(() => import('./pages/Process'));
+const Services = lazy(() => import('./pages/Services'));
 
 export default function App() {
   return (
@@ -21,6 +25,11 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/book" element={<Book />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/process" element={<Process />} />
+                <Route path="/manage" element={<ManageBooking />} />
+                <Route path="/manage/:bookingId" element={<ManageBooking />} />
+                <Route path="/operations" element={<Operations />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

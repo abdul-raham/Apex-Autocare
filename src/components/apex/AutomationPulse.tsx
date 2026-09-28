@@ -33,12 +33,20 @@ export function AutomationPulse({
   empty,
   className = '',
 }: AutomationPulseProps) {
-  const sorted = [...events].sort((a, z) => {
-    const ta = Date.parse(a.status === 'scheduled' ? a.scheduledFor! : a.createdAt);
-    const tz = Date.parse(z.status === 'scheduled' ? z.scheduledFor! : z.createdAt);
-    return variant === 'stream' ? tz - ta : ta - tz;
-  });
-  const shown = sorted.slice(0, max);
+  const when = (e: BookingEvent) => Date.parse(e.status === 'scheduled' ? e.scheduledFor! : e.completedAt ?? e.createdAt);
+  let shown: BookingEvent[];
+  let queuedFrom = -1;
+  if (variant === 'stream') {
+    // what already happened, newest first — then the next few things queued to happen
+    const past = events.filter((e) => when(e) <= now).sort((a, z) => when(z) - when(a));
+    const next = events.filter((e) => when(e) > now && e.status !== 'cancelled').sort((a, z) => when(a) - when(z));
+    const nextCount = Math.min(next.length, Math.max(3, max - past.length));
+    const pastShown = past.slice(0, max - nextCount);
+    queuedFrom = pastShown.length;
+    shown = [...pastShown, ...next.slice(0, nextCount)];
+  } else {
+    shown = [...events].sort((a, z) => when(a) - when(z)).slice(0, max);
+  }
   const done = events.filter((e) => effectiveStatus(e, now) === 'completed').length;
 
   return (
@@ -70,8 +78,11 @@ export function AutomationPulse({
               return (
                 <motion.li
                   key={e.id}
+                  data-queued-start={i === queuedFrom && queuedFrom > 0 ? true : undefined}
                   layout="position"
                   className={`relative grid grid-cols-[18px_52px_1fr] items-start gap-2 border-b border-line py-2 text-[13px] leading-snug ${
+                    i === queuedFrom && queuedFrom > 0 ? 'mt-5 border-t border-t-line-strong before:absolute before:-top-5 before:left-0 before:font-mono before:text-[10px] before:uppercase before:tracking-[0.16em] before:text-muted before:content-["Queued_next"]' : ''
+                  } ${
                     status === 'cancelled' ? 'text-dim line-through decoration-dim/60' : status === 'scheduled' ? 'text-silver' : 'text-bone'
                   }`}
                   initial={{ opacity: 0, x: -14 }}

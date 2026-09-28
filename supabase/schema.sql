@@ -630,7 +630,10 @@ begin
         t.vehicle_class, t.service_slug, t.addon_slugs, t.zone_id, start_ts, t.unit_id,
         t.customer_name, '', '', '', t.vehicle_label,
         'seed',
-        ((d - 3) + time '10:00' + make_interval(mins => (right(t.unit_id, 2)::int - 1) * 17 + (extract(epoch from t.start_time) / 1800)::int)) at time zone 'Africa/Lagos',
+        least(
+          ((d - 3) + time '10:00' + make_interval(mins => (right(t.unit_id, 2)::int - 1) * 17 + (extract(epoch from t.start_time) / 1800)::int)) at time zone 'Africa/Lagos',
+          (today + time '06:00' + make_interval(mins => (right(t.unit_id, 2)::int - 1) * 7)) at time zone 'Africa/Lagos'
+        ),
         not t.pending_deposit, false
       );
     end loop;

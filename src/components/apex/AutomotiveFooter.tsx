@@ -64,6 +64,9 @@ export function AutomotiveFooter({ showCta = true }: { showCta?: boolean }) {
             <ApexLink to="/book" className="text-bone underline-offset-4 hover:underline">
               Book
             </ApexLink>
+            <ApexLink to="/services" className="text-bone underline-offset-4 hover:underline">
+              Services
+            </ApexLink>
             <ApexLink to="/process" className="text-bone underline-offset-4 hover:underline">
               Process
             </ApexLink>

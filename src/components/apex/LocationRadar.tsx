@@ -53,7 +53,7 @@ export function LocationRadar({ variant = 'full' }: LocationRadarProps) {
   const target = selected ? position(selected) : null;
 
   return (
-    <section aria-labelledby="radar-title" className="grid items-center gap-8 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] lg:gap-14">
+    <section aria-labelledby="radar-title" className="grid items-center gap-8 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] lg:gap-14 [&>*]:min-w-0">
       <div>
         <h2 id="radar-title" className="sr-only">
           Service location

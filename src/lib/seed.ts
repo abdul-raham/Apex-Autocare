@@ -1,7 +1,7 @@
 import { SEED_DAY_OFFSETS, SEED_WEEK, UNITS } from '../data/apex';
 import { creationEvents } from './automation';
 import { buildBooking, hashCode } from './bookings';
-import { addDays, lagosClock, parseHhmm, toIso, weekday } from './time';
+import { addDays, lagosClock, lagosMs, parseHhmm, toIso, weekday } from './time';
 import type { Booking, BookingEvent } from './types';
 
 /**
@@ -17,8 +17,10 @@ export function generateSeed(today: string = lagosClock().date): { bookings: Boo
     const date = addDays(today, offset);
     for (const job of SEED_WEEK[weekday(date)] ?? []) {
       const key = `seed-${date}-${job.unit}-${job.start}`;
-      // booked three days ahead, mid-morning, like a real inbound queue
-      const createdAt = toIso(addDays(date, -3), 10 * 60 + job.unit * 17 + parseHhmm(job.start) / 30);
+      // Booked ~3 days ahead, but never "in the future" relative to today's seed.
+      const createdAt = new Date(
+        Math.min(Date.parse(toIso(addDays(date, -3), 10 * 60 + job.unit * 17 + parseHhmm(job.start) / 30)), lagosMs(today, 6 * 60 + job.unit * 7)),
+      ).toISOString();
       const booking = buildBooking(
         {
           spec: { classId: job.vehicle, serviceId: job.service, addonIds: job.addons ?? [], zoneId: job.zone },

@@ -59,6 +59,9 @@ export default function Book() {
 
   // A changed vehicle/service/zone can make the held window infeasible — release it honestly.
   useEffect(() => {
+    // On the deposit step the dock re-validates server-side itself; after success our own
+    // booking occupies the slot, which must not read as a conflict.
+    if (step === 4 || done) return;
     if (draft.slotStart === null || status !== 'ready' || !slots.length) return;
     const s = slots.find((x) => x.start === draft.slotStart);
     if (!s || s.status !== 'available') {
@@ -67,7 +70,7 @@ export default function Book() {
     } else if (s.unitId && !s.freeUnitIds.includes(draft.unitId ?? '')) {
       setSlot(s.start, s.unitId);
     }
-  }, [slots, status, draft.slotStart, draft.unitId, setSlot]);
+  }, [slots, status, draft.slotStart, draft.unitId, setSlot, step, done]);
 
   const selectedSlot = slots.find((s) => s.start === draft.slotStart) ?? null;
 
@@ -186,7 +189,7 @@ export default function Book() {
             {step === 1 && <ServiceComposer />}
             {step === 2 && <LocationRadar />}
             {step === 3 && (
-              <div className="grid gap-10 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] xl:gap-14">
+              <div className="grid gap-10 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] xl:gap-14 [&>*]:min-w-0">
                 <AvailabilityOrbit />
                 <div className="xl:pt-[92px]">
                   <BookingTimelineEngine spec={spec} slot={selectedSlot} bookings={bookings} />

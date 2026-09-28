@@ -13,7 +13,7 @@ import type { ApexRepository, BoardData, BookingRecord, RescheduleInput } from '
  * Supabase env vars are absent.
  */
 
-const KEY = 'apex.demo.v1';
+const KEY = 'apex.demo.v2';
 const CHANNEL = 'apex-demo';
 
 interface Db {

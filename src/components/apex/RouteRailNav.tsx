@@ -38,7 +38,7 @@ function useJourney(stations: RailStation[]) {
 
   useEffect(() => {
     if (pathname !== '/') {
-      const fixed = pathname.startsWith('/process') ? 1 : pathname.startsWith('/book') || pathname.startsWith('/manage') ? 3 : pathname.startsWith('/operations') ? 3.6 : -1;
+      const fixed = pathname.startsWith('/process') ? 1 : pathname.startsWith('/book') || pathname.startsWith('/manage') ? 3 : pathname.startsWith('/operations') ? 4 : -1;
       setProgress(fixed);
       return;
     }
@@ -50,7 +50,7 @@ function useJourney(stations: RailStation[]) {
         const el = s.sectionId ? document.getElementById(s.sectionId) : null;
         return el ? el.getBoundingClientRect().top + window.scrollY : Infinity;
       });
-      let p = -1;
+      let p: number;
       if (anchor < tops[0]) p = -1 + Math.max(0, anchor / Math.max(1, tops[0]));
       else {
         p = stations.length - 1;

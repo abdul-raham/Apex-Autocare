@@ -98,7 +98,7 @@ export function AvailabilityOrbit() {
   }
 
   return (
-    <section aria-labelledby="orbit-title" className="relative">
+    <section aria-labelledby="orbit-title" className="relative min-w-0">
       <h2 id="orbit-title" className="sr-only">
         Choose a time
       </h2>
